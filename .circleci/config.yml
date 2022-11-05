@@ -160,10 +160,12 @@ jobs:
             cd frontend
             npm install
             npm audit fix --force --audit-level=critical
-            # One more time :D
+            npm audit fix --force --audit-level=critical
+            npm audit fix --force --audit-level=critical
+            npm audit fix --force --audit-level=critical
             npm audit fix --force --audit-level=critical
             npm audit --audit-level=critical
-      # - notify_on_failure
+      - notify_on_failure
 
   scan-backend:
     docker:
