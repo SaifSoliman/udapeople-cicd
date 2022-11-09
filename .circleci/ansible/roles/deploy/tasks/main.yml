@@ -47,6 +47,7 @@
 
 - name: install ans start app
   command:  pm2 start main.js
+  register: execute_node
   args:
     chdir: ~/backend-app/dist
   environment:
