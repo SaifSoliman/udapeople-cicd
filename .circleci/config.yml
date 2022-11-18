@@ -122,67 +122,67 @@ jobs:
       - image: cimg/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [frontend-deps]
-      - run:
-          name: Front-end Unit Test
-          command: |
-            cd frontend
-            npm install
-            npm test
-      - notify_on_failure
+      # - restore_cache:
+      #     keys: [frontend-deps]
+      # - run:
+      #     name: Front-end Unit Test
+      #     command: |
+      #       cd frontend
+      #       npm install
+      #       npm test
+      # - notify_on_failure
 
   test-backend:
     docker:
       - image: cimg/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [backend-deps]
-      - run:
-          name: Back-end Unit Test
-          command: |
-            cd backend
-            npm install
-            npm test
-      - notify_on_failure
+      # - restore_cache:
+      #     keys: [backend-deps]
+      # - run:
+      #     name: Back-end Unit Test
+      #     command: |
+      #       cd backend
+      #       npm install
+      #       npm test
+      # - notify_on_failure
 
   scan-frontend:
     docker:
       - image: cimg/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [frontend-deps]
-      - run:
-          name: Front-end Scan
-          command: |
-            cd frontend
-            sudo npm install npm@latest -g
-            npm audit fix --force --audit-level=critical
-            npm audit fix --force --audit-level=critical
-            # npm audit fix --force --audit-level=critical
-            # npm audit fix --force --audit-level=critical
-            # npm audit fix --force --audit-level=critical
-            npm audit --audit-level=critical
-      - notify_on_failure
+      # - restore_cache:
+      #     keys: [frontend-deps]
+      # - run:
+      #     name: Front-end Scan
+      #     command: |
+      #       cd frontend
+      #       sudo npm install npm@latest -g
+      #       npm audit fix --force --audit-level=critical
+      #       npm audit fix --force --audit-level=critical
+      #       # npm audit fix --force --audit-level=critical
+      #       # npm audit fix --force --audit-level=critical
+      #       # npm audit fix --force --audit-level=critical
+      #       npm audit --audit-level=critical
+      # - notify_on_failure
 
   scan-backend:
     docker:
       - image: cimg/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [backend-deps]
-      - run:
-          name: Back-end Scan
-          command: |
-            cd backend
-            npm install
-            npm audit fix --force --audit-level=critical
-            npm audit fix --force --audit-level=critical
-            npm audit --audit-level=critical
-      - notify_on_failure
+      # - restore_cache:
+      #     keys: [backend-deps]
+      # - run:
+      #     name: Back-end Scan
+      #     command: |
+      #       cd backend
+      #       npm install
+      #       npm audit fix --force --audit-level=critical
+      #       npm audit fix --force --audit-level=critical
+      #       npm audit --audit-level=critical
+      # - notify_on_failure
 
   deploy-infrastructure:
     docker:
@@ -493,5 +493,5 @@ workflows:
           requires: [deploy-backend, deploy-frontend]
       - cloudfront-update:
           requires: [smoke-test]
-      - cleanup:
-          requires: [cloudfront-update]
+      # - cleanup:
+      #     requires: [cloudfront-update]
